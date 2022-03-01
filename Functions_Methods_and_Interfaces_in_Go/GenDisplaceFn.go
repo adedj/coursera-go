@@ -49,48 +49,13 @@ import (
 	"strings"
 )
 
-/*
-func Read() {
-	scanner := bufio.NewScanner(os.Stdin) // Create a scanner for user input
-	fmt.Println("Enter values for acceleration, initial velocity, and initial displacement (ex: 10 5 4)")
-	scanner.Scan()                                 // Scans a line from Stdin(Console)
-	strSlice := strings.Split(scanner.Text(), " ") // Return a slice with a number for each index
-
-	// Limit the user input to 3 characters
-	if len(strSlice) > 3 {
-		strSlice = strSlice[:3]
-		fmt.Println("You entered more than three values, only the first three where used.")
-	}
-
-	floatSlice := make([]float64, 0) // Create an empty float64 slice
-
-	// Convert the string slice to an float slice
-	for _, v := range strSlice {
-
-		x, _ := strconv.ParseFloat(v, 64)  // Convert each value of the string slice into a float64
-		floatSlice = append(floatSlice, x) // Add the value to the float slice
-	}
-
-	acc := floatSlice[0]
-	vel := floatSlice[1]
-	dis := floatSlice[2]
-
-	fmt.Printf("You entered acceleration a=%v, initial velocity v=%v and initial displacement s=%v\n", acc, vel, dis)
-
-	// Using Scanln to store the time input
-	fmt.Println("Enter the time")
-	var time int
-
-	fmt.Scanln(&time) // Taking input from user
-	fmt.Printf("You entered time t=%v\n", time)
-
-}
-*/
+// Declare GenDisplaceFn function with 3 float64 arguments (a,v,s) and another function as a return value
 func GenDisplaceFn(a, v, s float64) func(float64) float64 {
 
+	// function that will be returned (argument t representing time)
 	displacement := func(t float64) float64 {
 
-		return 0.5*a*math.Pow(t, 2) + v*t + s
+		return 0.5*a*math.Pow(t, 2) + v*t + s // displacement formula
 	}
 
 	return displacement
@@ -118,19 +83,22 @@ func main() {
 		floatSlice = append(floatSlice, x) // Add the value to the float slice
 	}
 
-	acc := floatSlice[0]
-	vel := floatSlice[1]
-	dis := floatSlice[2]
+	acc := floatSlice[0] // acceleration
+	vel := floatSlice[1] // velocity
+	dis := floatSlice[2] // displacement
 
 	fmt.Printf("You entered acceleration a=%v, initial velocity v=%v and initial displacement s=%v\n", acc, vel, dis)
 
-	// Using Scanln to store the time input
+	// Using Scanln to store the time value from user input
 	fmt.Println("Enter the time")
 	var time float64
 
 	fmt.Scanln(&time) // Taking input from user
 	fmt.Printf("You entered time t=%v\n", time)
 
+	// Call the GenDisplaceFn with the acceleration, initial velocity, and initial displacement as arguments
 	fn := GenDisplaceFn(acc, vel, dis)
-	fmt.Println(fn(time))
+
+	// Print displacement
+	fmt.Printf("The displacment after %v seconds is: %v\n", time, fn(time))
 }
