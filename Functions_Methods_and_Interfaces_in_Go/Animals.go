@@ -31,18 +31,18 @@ type Animal struct {
 }
 
 // Method that prints the animal food
-func (a Animal) Eat() {
-	fmt.Println(a.food)
+func (f Animal) Eat() {
+	fmt.Println(f.food)
 }
 
 // Method that prints the animal locomotion
-func (a Animal) Move() {
-	fmt.Println(a.locomotion)
+func (l Animal) Move() {
+	fmt.Println(l.locomotion)
 }
 
 // Method that prints the animal spoken sound
-func (c Animal) Speak() {
-	fmt.Println(c.noise)
+func (n Animal) Speak() {
+	fmt.Println(n.noise)
 }
 
 func main() {
