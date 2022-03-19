@@ -36,8 +36,8 @@ func (a Animal) Eat() {
 }
 
 // Method that prints the animal locomotion
-func (b Animal) Move() {
-	fmt.Println(b.locomotion)
+func (a Animal) Move() {
+	fmt.Println(a.locomotion)
 }
 
 // Method that prints the animal spoken sound
@@ -47,11 +47,14 @@ func (c Animal) Speak() {
 
 func main() {
 
+	// Declare the animal variables
 	cow := Animal{"grass", "walk", "moo"}
 	bird := Animal{"worms", "fly", "peep"}
 	snake := Animal{"mice", "slither", "hss"}
 
 	fmt.Println("Enter the name of the animal (cow, bird or snake) and the information requested (eat, move or speak).")
+
+	// Loop forever
 	for true {
 		scanner := bufio.NewScanner(os.Stdin) // Create a scanner for user input
 		fmt.Print("> ")
@@ -66,6 +69,12 @@ func main() {
 		animal := strSlice[0]
 		data := strSlice[1]
 
+		// Check if user input is correct
+		if animal != "cow" || animal != "bird" || animal != "snake" || data != "eat" || data != "move" || data != "speak" {
+			fmt.Println("You did not enter the correct data")
+		}
+
+		// Process the user request based on animal type and information
 		switch {
 		case animal == "cow" && data == "eat":
 			cow.Eat()
