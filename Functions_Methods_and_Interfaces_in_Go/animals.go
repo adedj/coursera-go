@@ -53,40 +53,39 @@ func main() {
 
 	fmt.Println("Enter the name of the animal (cow, bird or snake) and the information requested (eat, move or speak).")
 	for true {
+		scanner := bufio.NewScanner(os.Stdin) // Create a scanner for user input
+		fmt.Print("> ")
+		scanner.Scan()                                 // Scans a line from Stdin(Console)
+		strSlice := strings.Split(scanner.Text(), " ") // Return a slice with a number for each index
 
-	}
-	scanner := bufio.NewScanner(os.Stdin) // Create a scanner for user input
-	fmt.Print("> ")
-	scanner.Scan()                                 // Scans a line from Stdin(Console)
-	strSlice := strings.Split(scanner.Text(), " ") // Return a slice with a number for each index
+		// Limit the user input to two characters
+		if len(strSlice) > 2 {
+			strSlice = strSlice[:2]
+		}
 
-	// Limit the user input to two characters
-	if len(strSlice) > 2 {
-		strSlice = strSlice[:2]
-	}
+		animal := strSlice[0]
+		data := strSlice[1]
 
-	animal := strSlice[0]
-	data := strSlice[1]
-
-	switch {
-	case animal == "cow" && data == "eat":
-		cow.Eat()
-	case animal == "cow" && data == "move":
-		cow.Move()
-	case animal == "cow" && data == "speak":
-		cow.Speak()
-	case animal == "bird" && data == "eat":
-		bird.Eat()
-	case animal == "bird" && data == "move":
-		bird.Move()
-	case animal == "bird" && data == "speak":
-		bird.Speak()
-	case animal == "snake" && data == "eat":
-		snake.Eat()
-	case animal == "snake" && data == "move":
-		snake.Move()
-	case animal == "snake" && data == "speak":
-		snake.Speak()
+		switch {
+		case animal == "cow" && data == "eat":
+			cow.Eat()
+		case animal == "cow" && data == "move":
+			cow.Move()
+		case animal == "cow" && data == "speak":
+			cow.Speak()
+		case animal == "bird" && data == "eat":
+			bird.Eat()
+		case animal == "bird" && data == "move":
+			bird.Move()
+		case animal == "bird" && data == "speak":
+			bird.Speak()
+		case animal == "snake" && data == "eat":
+			snake.Eat()
+		case animal == "snake" && data == "move":
+			snake.Move()
+		case animal == "snake" && data == "speak":
+			snake.Speak()
+		}
 	}
 
 }
