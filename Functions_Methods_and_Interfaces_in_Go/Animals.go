@@ -31,6 +31,7 @@ type Animal struct {
 }
 
 // Method that prints the animal food
+// Animal = reciever type
 func (f Animal) Eat() {
 	fmt.Println(f.food)
 }
