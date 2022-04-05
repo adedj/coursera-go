@@ -41,15 +41,9 @@ type Animal interface {
 
 // Define the Cow type
 type Cow struct {
-	name       string
 	food       string
 	locomotion string
 	sound      string
-}
-
-// Define the Name method for the Cow type (Cow is a reciever type for the Name method)
-func (c Cow) Name() {
-	fmt.Println(c.name)
 }
 
 // Define the Eat method for the Cow type (Cow is a reciever type for the Eat method)
@@ -107,18 +101,16 @@ func (s Snake) Speak() {
 
 func main() {
 
-	sli := make([]Animal, 0)
-	//animal = Cow{"test", "grass", "walk", "moo"}
-	//animal = test
-	//animal.Speak()
+	cow := Cow{"grass", "walk", "moo"}
+	bird := Bird{"worms", "fly", "peep"}
+	snake := Snake{"mice", "slither", "hsss"}
 
-	//test, ok := animal(Cow)
-	//fmt.Println(test, ok)
-
-	//animal = Cow{"grass", "walk", "moo"}
-	//var cow = Cow{"grass", "walk", "moo"}
-	//var bird = Bird{"worms", "fly", "peep"}
-	//var snake = Snake{"mice", "slither", "hsss"}
+	// Create a map with string keys and Animal interface type as values
+	animals := map[string]Animal{
+		"cow":   cow,
+		"bird":  bird,
+		"snake": snake,
+	}
 
 	for true {
 		scanner := bufio.NewScanner(os.Stdin) // Create a scanner for user input
@@ -132,33 +124,61 @@ func main() {
 		}
 
 		command := strSlice[0]
-		aninalName := strSlice[1]
+		animalName := strSlice[1]
+		param := strSlice[2]
 
-		if command != "newanimal" || command != "query" {
-			fmt.Println("Each command must start with newanimal or query")
+		switch command {
 
-		} else if command == "newanimal" {
-			animalType := strSlice[2]
+		case "newanimal":
+			{
+				switch param {
+				case "cow":
+					// Add new cow animal
+					animals[animalName] = cow
+					fmt.Println("Created it!")
 
-			switch animalType {
-			case "cow":
-				sli = append(Cow{aninalName, "grass", "walk", "moo"})
-				//animal = Cow{aninalName, "grass", "walk", "moo"}
-				fmt.Println("Created it!")
+				case "bird":
+					// Add new bird  animal
+					animals[animalName] = bird
+					fmt.Println("Created it!")
+
+				case "snake":
+					// Add new snake  animal
+					animals[animalName] = snake
+					fmt.Println("Created it!")
+				default:
+					fmt.Println("Wrong animal type", param)
+				}
 			}
-
-		} else if command == "query" {
-			method := strSlice[2]
-
-			switch method {
-			case "eat":
+		case "query":
+			{
 
 			}
-
-		} else {
-			fmt.Println("wrong animal")
 		}
-
 	}
 
 }
+
+//if command != "newanimal" || command != "query" {
+//	fmt.Println("Each command must start with newanimal or query")
+//
+//} else if command == "newanimal" {
+//	animalType := strSlice[2]
+//
+//	switch animalType {
+//	case "cow":
+//		animals[animalType] = cow
+//		fmt.Println("Created it!")
+//	}
+//
+//} else if command == "query" {
+//	method := strSlice[2]
+//
+//	switch method {
+//	case "eat":
+//
+//	}
+//
+//} else {
+//	fmt.Println("wrong animal")
+//}
